@@ -1,9 +1,9 @@
 # PedoDoc
 
-* La documentation du [PedObserver](PedObserver/README.md)
-* La documentation du [PedoConnector](PedoConnector/README.md)
-* La documentation du [PedoHunter](PedoHunter/README.md)
-* La documentation du [PedoMeter](PedoMeter/README.md)
+* Documentation for the service :  [PedObserver](PedObserver/README.md)
+* Documentation for the service :  [PedoConnector](PedoConnector/README.md)
+* Documentation for the service :  [PedoHunter](PedoHunter/README.md)
+* Documentation for the service :  [PedoMeter](PedoMeter/README.md)
 
 
 ## Example of complete User Story
