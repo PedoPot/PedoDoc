@@ -5,12 +5,12 @@
 sequenceDiagram
     PedObserver->>+PedoController: Send new profile <br>information
     activate PedoController
-    PedoController->>+Database: Add profile <br>information
-    activate Database
+    PedoController->>+PedoStocker: Add profile <br>information
+    activate PedoStocker
     deactivate PedoController
     activate PedoController
     PedObserver->>+PedoController: Send new api <br>credentials
-    PedoController->>+Database: Add api <br>credentials
+    PedoController->>+PedoStocker: Add api <br>credentials
     PedoController->>+PedoConnector: Send API credentials to start listener
     deactivate PedoController
 ```
@@ -26,14 +26,14 @@ sequenceDiagram
     PedoBaiter-->>PedoController: Returns the <br>new profile
     deactivate PedoBaiter
     activate PedoController
-    PedoController->>Database: Saves the new profile
+    PedoController->>PedoStocker: Saves the new profile
     PedoController->>PedoBaiter: Asks to create<br>an activity for <br>the profile
     deactivate PedoController
     activate PedoBaiter
     PedoBaiter-->>PedoController: Returns the <br>activity generated
     deactivate PedoBaiter
     activate PedoController
-    PedoController->>Database: Saves the activity for the profile
+    PedoController->>PedoStocker: Saves the activity for the profile
     PedoController->>PedoConnector: Creates the new profile with the activity
     PedoController->>PedoConnector: Use the API credentials to start a new listener
     PedoController-->>PedoObserver: Display the <br>newly generated profile

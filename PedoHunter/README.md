@@ -6,25 +6,25 @@
 sequenceDiagram
     PedoConnector->>PedoController: Received a <br/>new message
     activate PedoController
-    PedoController->>Database: Request the conversation for<br/>the given person
+    PedoController->>PedoStocker: Request the conversation for<br/>the given person
     deactivate PedoController
-    activate Database
-    Database-->>PedoController: No person found
-    deactivate Database
+    activate PedoStocker
+    PedoStocker-->>PedoController: No person found
+    deactivate PedoStocker
     activate PedoController
-    PedoController->>Database: Request profile data
+    PedoController->>PedoStocker: Request profile data
     deactivate PedoController
-    activate Database
-    Database-->>PedoController: Send the profile data
+    activate PedoStocker
+    PedoStocker-->>PedoController: Send the profile data
     activate PedoController
-    deactivate Database
+    deactivate PedoStocker
     PedoController->>PedoController: Create "system" prompt from profile data
-    PedoController->>Database: Create a new conversation <br/>with as first message the prompt<br/> and the message received
+    PedoController->>PedoStocker: Create a new conversation <br/>with as first message the prompt<br/> and the message received
     PedoController->>+PedoHunter: Send conversation
     deactivate PedoController
     PedoHunter-->>-PedoController: Send a response
     activate PedoController
-    PedoController->>Database: Save the response in <br/>the conversation history
+    PedoController->>PedoStocker: Save the response in <br/>the conversation history
     PedoController-->>PedoConnector: Send the response <br/>to the message
     deactivate PedoController
     
@@ -34,12 +34,12 @@ sequenceDiagram
 sequenceDiagram
     PedoConnector->>PedoController: Received a <br/>new message
     activate PedoController
-    PedoController->>DataBase: Save the new message in <br/>the conversation history
+    PedoController->>PedoStocker: Save the new message in <br/>the conversation history
     PedoController->>+PedoHunter: Send conversation history
     deactivate PedoController
     PedoHunter-->>-PedoController: Send a response
     activate PedoController
-    PedoController->>DataBase: Save the response in <br/>the conversation history
+    PedoController->>PedoStocker: Save the response in <br/>the conversation history
     PedoController-->>PedoConnector: Send the response <br/>to the message
     deactivate PedoController
 ```

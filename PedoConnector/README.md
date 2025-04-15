@@ -9,11 +9,11 @@ sequenceDiagram
     PedoConnector->>PedoController: Ask for API credentials
     deactivate PedoConnector
     activate PedoController
-    PedoController->>DataBase: Get API credentials
+    PedoController->>PedoStocker: Get API credentials
     deactivate PedoController
-    activate DataBase
-    DataBase-->>PedoController: Return API credentials
-    deactivate DataBase
+    activate PedoStocker
+    PedoStocker-->>PedoController: Return API credentials
+    deactivate PedoStocker
     activate PedoController
     PedoController-->>+PedoConnector: Send API credentials<br>Start listeners
     deactivate PedoController

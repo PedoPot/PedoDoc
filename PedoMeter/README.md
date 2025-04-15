@@ -6,11 +6,11 @@ sequenceDiagram
     PedObserver->>PedoController: Request a score <br>for a given suspect
     activate PedoController
     PedoController->>PedoController: No score has been saved for the current <br>conversations state of the suspect 
-    PedoController->>Database: Retrieve all<br>conversations<br>for a given suspect
+    PedoController->>PedoStocker: Retrieve all<br>conversations<br>for a given suspect
     deactivate PedoController
-    activate Database
-    Database-->>PedoController: Sends the data
-    deactivate Database
+    activate PedoStocker
+    PedoStocker-->>PedoController: Sends the data
+    deactivate PedoStocker
     activate PedoController
     PedoController->>PedoMeter: Send all the conversations of the suspect
     deactivate PedoController
@@ -18,7 +18,7 @@ sequenceDiagram
     PedoMeter-->>PedoController: Returns a score 
     deactivate PedoMeter
     activate PedoController
-    PedoController->>Database: Saves the score<br>of the suspect for<br>the current state<br>of the conversations
+    PedoController->>PedoStocker: Saves the score<br>of the suspect for<br>the current state<br>of the conversations
     PedoController-->>PedObserver: Returns the score
     deactivate PedoController
 ```
@@ -28,11 +28,11 @@ sequenceDiagram
     PedObserver->>PedoController: Request a score <br>for a given suspect
     activate PedoController
     PedoController->>PedoController: A score has been saved for the current <br>conversations state of the suspect 
-    PedoController->>Database: Retrieve the saved <br> score
+    PedoController->>PedoStocker: Retrieve the saved <br> score
     deactivate PedoController
-    activate Database
-    Database-->>PedoController: Returns the score<br>saved
-    deactivate Database
+    activate PedoStocker
+    PedoStocker-->>PedoController: Returns the score<br>saved
+    deactivate PedoStocker
     activate PedoController
     PedoController-->>PedObserver: Returns the score
     deactivate PedoController
