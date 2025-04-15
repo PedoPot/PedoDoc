@@ -15,8 +15,9 @@ sequenceDiagram
     PedoStocker-->>PedoController: Return API credentials
     deactivate PedoStocker
     activate PedoController
-    PedoController-->>+PedoConnector: Send API credentials<br>Start listeners
+    PedoController-->>+PedoConnector: Send API credentials
     deactivate PedoController
     activate PedoConnector
+    PedoConnector->>PedoConnector: Start listeners
     deactivate PedoConnector
 ```
